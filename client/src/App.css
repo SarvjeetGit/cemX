@@ -1,0 +1,147 @@
+body {
+    height: 100%;
+    background-color: #fff;
+}
+nav {
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.formwala {
+    margin-top: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.submit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.container .row {
+    height: 100%;
+}
+
+.col-md-4 {
+    text-align: center;
+    padding: 0px;
+}
+
+.card {
+    width: 100%;
+    border-radius: 0%;
+    border: 2px solid #841f27;
+    display: flex;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.debit {
+    color: red;
+}
+
+.credit {
+    color: green;
+}
+
+.col-6 {
+    height: 100%;
+    min-height: 20px;
+    text-align: center;
+    padding: 0px;
+}
+
+.desc {
+    opacity: 0.5;
+}
+
+li {
+    color: red;
+    display: inline-block;
+    list-style-type: none;
+    font-weight: 900;
+    padding: 1em;
+    text-transform: uppercase;
+}
+
+.col-12 {
+    width: 100%;
+    padding: 0%;
+}
+
+li span {
+    display: block;
+}
+
+@media all and (min-width: 991px) {
+    #chart {
+        width: 50%;
+        height: 50%;
+    }
+    .card-footer {
+        background-color: #fff;
+        border: 0ch;
+    }
+    .card-footer .badge {
+        padding: 10px 10px 10px 10px;
+    }
+    .col-6 .payment {
+        padding-top: 25px;
+        min-height: 40px;
+    }
+    .logowala {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    #form {
+        margin-bottom: 20%;
+    }
+    .foot {
+        margin-top: 5%;
+    }
+}
+
+@media all and (max-width: 990px) {
+    .container {
+        width: 95%;
+    }
+    #form {
+        margin-top: 50%;
+        margin-bottom: 55%;
+    }
+    li {
+        padding: 5px;
+        font-size: 75%;
+    }
+    #chart {
+        width: 100%;
+        height: 100%;
+    }
+    .card-footer {
+        background-color: #fff;
+        border: 0ch;
+        padding: 0%;
+    }
+    .card-body div i {
+        display: block;
+        justify-content: center;
+    }
+    .logowala {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .foot {
+        margin-top: 25%;
+    }
+}
+.card-body {
+    display: flex;
+    justify-content: center;
+}
