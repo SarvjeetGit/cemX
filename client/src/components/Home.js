@@ -18,6 +18,7 @@ const Home = () => {
     var data;
     const onSubmit = async (e) => {
         e.preventDefault();
+        console.log(window.screen.width);
         res = await showData(number);
         data = await res.data;
         setFormData({ ...formData, loaded: true, payload: await data });
@@ -43,7 +44,7 @@ const Home = () => {
                             paddingTop: '50px',
                         }}
                     >
-                        Credit Portal
+                        <span style={{ color: 'gray' }}>Credit</span> Portal
                     </div>
                     <div className='card formwala'>
                         <div className='card-body'>
@@ -51,9 +52,14 @@ const Home = () => {
                             <form onSubmit={(e) => onSubmit(e)}>
                                 <div className='form-group'>
                                     <input
+                                        align='middle'
                                         type='tel'
-                                        size='30'
-                                        placeholder='             Your Phone Number'
+                                        size={
+                                            window.screen.width > 576
+                                                ? `90`
+                                                : `30`
+                                        }
+                                        placeholder='Your Phone Number'
                                         required
                                         pattern='[0-9]{10}'
                                         name='number'

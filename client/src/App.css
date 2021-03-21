@@ -50,6 +50,7 @@ body {
 } */
 
 .formwala {
+    border: 0px !important;
     margin-top: 10%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -112,11 +113,11 @@ body {
     box-shadow: none !important;
 }
 .debit {
-    color: red;
+    color: gray;
 }
 
 .credit {
-    color: green;
+    color: #841f27;
 }
 
 .col-6 {
@@ -158,7 +159,9 @@ li span {
         border: 0ch;
     }
     .card-footer .badge {
-        padding: 10px 10px 10px 10px;
+        padding: 20px 20px 20px 20px;
+        font-size: larger;
+        margin-right: 2px;
     }
     .col-6 .payment {
         padding-top: 25px;
@@ -178,7 +181,7 @@ li span {
         width: 95%;
     } */
     #form {
-        margin-top: 50%;
+        /* margin-top: 50%; */
         margin-bottom: 55%;
     }
     li {
@@ -203,18 +206,107 @@ li span {
         max-height: 100px;
     }
 }
+@media all and (min-width: 1080px) {
+    .chartcont {
+        max-height: 800px;
+        max-width: 800px;
+        padding-left: 31.5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .countholder {
+        position: absolute;
+        top: 51%;
+        left: 64%;
+    }
+    .counter {
+        position: absolute;
+        top: 45%;
+        left: 64%;
+    }
+}
+
+@media all and (max-width: 1079px) {
+    .chartcont {
+        max-height: 800px;
+        max-width: 800px;
+        padding-left: 20.5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .countholder {
+        position: absolute;
+        top: 51%;
+        left: 54%;
+    }
+    .counter {
+        position: absolute;
+        top: 45%;
+        left: 54%;
+    }
+}
+
+@media all and (max-width: 576px) {
+    .chartcont {
+        max-height: 800px;
+        max-width: 800px;
+        padding-left: 1.5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .countholder {
+        position: absolute;
+        top: 51%;
+        left: 32%;
+    }
+    .counter {
+        position: absolute;
+        top: 42%;
+        left: 31.9%;
+    }
+}
+
 .card-body {
     display: flex;
     justify-content: center;
 }
-.countholder {
+/* .countholder {
     position: absolute;
     top: 51%;
-    left: 65%;
+    left: 64%;
 }
 .counter {
     position: absolute;
 
     top: 45%;
-    left: 65%;
+    left: 64%;
+} */
+.badge .badge-custom {
+    background-color: #841f27 !important;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(132,31,39,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+input[type='tel'] {
+    border: 2px solid #841f27;
+    border-radius: 4px;
 }

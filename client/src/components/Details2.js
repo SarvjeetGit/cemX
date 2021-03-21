@@ -40,15 +40,15 @@ export default function Details2(info) {
                     <div
                         className='counter'
                         style={{
-                            color: 'red',
-                            fontSize: 'larger',
+                            color: '#841f27',
+                            fontSize: '27px',
                             fontWeight: 'bolder',
                         }}
                     >
-                        <i>{days > 10 ? days : `0${days}`}:</i>
-                        <i>{hours > 10 ? hours : `0${hours}`}:</i>
-                        <i>{minutes > 10 ? minutes : `0${minutes}`}:</i>
-                        <i>{seconds > 10 ? seconds : `0${seconds}`}</i>
+                        <i>{days >= 10 ? days : `0${days}`}:</i>
+                        <i>{hours >= 10 ? hours : `0${hours}`}:</i>
+                        <i>{minutes >= 10 ? minutes : `0${minutes}`}:</i>
+                        <i>{seconds >= 10 ? seconds : `0${seconds}`}</i>
                     </div>
                 </Fragment>
             );
@@ -57,10 +57,10 @@ export default function Details2(info) {
     var due = info.due;
     var paid = info.paid;
     const data2 = {
-        labels: [`paid`, `due`],
+        labels: [`due`, `paid`],
         datasets: [
             {
-                data: [paid, due],
+                data: [due, paid],
                 backgroundColor: [
                     'rgba(132,31,39, 0.8)',
                     'rgba(151,140,149,0.5)',
@@ -80,54 +80,33 @@ export default function Details2(info) {
         <Fragment>
             <section className='container' style={{ paddingBottom: '20px' }}>
                 <div>
-                    Hello,
+                    <strong style={{ color: 'gray' }}>Hello,</strong>
                     <br />
-                    <strong style={{ color: 'gray' }}>{fname[0]}</strong>
+                    <strong style={{ color: 'gray', fontSize: '20px' }}>
+                        {fname[0]}
+                    </strong>
                     {'  '}
                     <strong
-                        style={{ color: 'rgb(132,31,39)', fontSize: 'larger' }}
+                        style={{ color: 'rgb(132,31,39)', fontSize: '24px' }}
                     >
                         {fname[1]}
                     </strong>
                 </div>
             </section>
             <section className='container'>
-                <div className='row'>
-                    <div className='col-6'>
-                        <div className='card cardimp'>
-                            <div className='card-title'>
-                                <h2 className='debit'>₹{info.due}</h2>
-                            </div>
-                            <div className='card-body'>
-                                <small>(Amount to be paid)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-6'>
-                        <div className='card cardimp'>
-                            <div className='card-title'>
-                                <h2 className='credit'>₹{info.paid}</h2>
-                            </div>
-                            <div className='card-body'>
-                                <small>(Amount already paid)</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className='row ' style={{ position: 'relative' }}>
-                    <div
-                        className='chartcont col-12'
-                        style={{
-                            maxHeight: '800px',
-                            maxWidth: '800px',
-                            paddingLeft: '33.5%',
-                            marginTop: '20px',
-                            marginBottom: '20px',
-                        }}
-                    >
+                    <div className='chartcont col-12'>
                         <Countdown date={info.duedate} renderer={renderer} />
                         <div className='countholder'>
-                            <strong>dd:hh:mm:ss</strong>
+                            <strong
+                                style={{
+                                    color: 'gray',
+                                    fontSize: '24px',
+                                    fontStyle: 'italic',
+                                }}
+                            >
+                                dd:hh:mm:ss
+                            </strong>
                         </div>
                         <Doughnut
                             data={data2}
@@ -137,7 +116,7 @@ export default function Details2(info) {
                         />
                     </div>
                 </div>
-                <div
+                {/* <div
                     className='card-footer'
                     style={{
                         display: 'flex',
@@ -155,6 +134,32 @@ export default function Details2(info) {
                         Due Date :{' '}
                         <Moment date={info.duedate} format='DD/MM/YYYY' />
                     </strong>
+                </div> */}
+                <div className='row'>
+                    <div className='col-6'>
+                        <div className='card cardimp'>
+                            <div className='card-title'>
+                                <h2 className='debit'>₹{info.paid}</h2>
+                            </div>
+                            <div className='card-body'>
+                                <small style={{ color: 'gray' }}>
+                                    (Amount already paid)
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='col-6'>
+                        <div className='card cardimp'>
+                            <div className='card-title'>
+                                <h2 className='credit'>₹{info.due}</h2>
+                            </div>
+                            <div className='card-body'>
+                                <small style={{ color: '#841f27' }}>
+                                    (Amount to be paid)
+                                </small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </Fragment>

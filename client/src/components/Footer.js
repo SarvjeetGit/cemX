@@ -88,8 +88,8 @@ const Footer = () => {
             {/* footer */}
             <section class='footer boxs'>
                 <div class='container'>
-                    <div class='row nomargin'>
-                        <div class='col-md-4 nopadding'>
+                    <div class='row nomargin decrease'>
+                        <div class='col-md-3 col-sm-6 nopadding'>
                             <div class='india_cm boxs'>
                                 <a href='https://www.cemx.in/'>
                                     <img
@@ -98,7 +98,12 @@ const Footer = () => {
                                         alt='cemx'
                                     />
                                 </a>
-                                <p>
+                                <p
+                                    style={{
+                                        textAlign: 'center',
+                                        fontWeight: '400',
+                                    }}
+                                >
                                     cemX is India’s first online platform
                                     <br /> with offline extension stores where
                                     <br /> a customer can buy cement of
@@ -108,7 +113,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div class='col-md-2 nopadding'>
+                        <div class='col-md-3 col-sm-6 nopadding'>
                             <div class='Popular boxs pop'>
                                 <ul>
                                     <li className='didit done'>
@@ -144,10 +149,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div
-                            class='col-md-3 nopadding'
-                            style={{ paddingLeft: '70px' }}
-                        >
+                        <div class='col-md-3 col-sm-6 nopadding' style={{}}>
                             <div class='Popular boxs quick'>
                                 <ul>
                                     <li className='didit done'> Quick Links</li>
@@ -190,7 +192,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div class='col-md-3 nopadding'>
+                        <div class='col-md-3 col-sm-6 nopadding'>
                             <div class='Popular boxs service'>
                                 <ul>
                                     <li className='didit done'>Our Services</li>
