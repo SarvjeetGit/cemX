@@ -1,0 +1,19 @@
+.letsgo {
+    height: 300px;
+}
+.submit-container {
+    padding-top: 20px;
+    position: relative;
+}
+
+.recaptcha-holder {
+    position: relative;
+    height: 85px;
+    width: 100%;
+}
+.recaptcha {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

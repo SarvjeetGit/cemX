@@ -3,13 +3,15 @@ import { NavLink, Route } from 'react-router-dom';
 import showData from '../actions/showData';
 import Details2 from './Details2';
 import firebase from '../firebase';
+import './Home.css';
 const Home = () => {
     const [formData, setFormData] = useState({
         number: '',
         loaded: false,
         payload: {},
     });
-
+    let code = null;
+    const htm = `<input placeholder='enter OTP' />`;
     const { number } = formData;
 
     const onChange = (e) =>
@@ -25,10 +27,11 @@ const Home = () => {
             .auth()
             .signInWithPhoneNumber(num, recaptcha)
             .then(function (e) {
-                let code = prompt('enter the otp', '');
+                document.querySelector('.recaptcha').innerHTML = htm;
+                // let code = prompt('enter the otp', '');
                 // if (code == null) return;
                 e.confirm(code)
-                    .then(async function (resu) {
+                    .then(async function () {
                         res = await showData(number);
                         data = await res.data;
                         setFormData({
@@ -41,19 +44,9 @@ const Home = () => {
                         console.log(err.message);
                     });
             });
-
-        console.log(num);
-        // res = await showData(number);
-        // data = await res.data;
-        // setFormData({ ...formData, loaded: true, payload: await data });
     };
     if (formData.loaded) {
         return <Route render={() => <Details2 {...formData.payload} />} />;
-        // return (
-        //     <Redirect
-        //         to={{ pathname: '/details', state: { ...formData.payload },  }}
-        //     />
-        // );
     } else {
         return (
             <Fragment>
@@ -70,12 +63,14 @@ const Home = () => {
                     >
                         <span style={{ color: 'gray' }}>Credit</span> Portal
                     </div>
-                    <div className='card formwala'>
-                        <div className='card-body'>
+                    <div className='card letsgo formwala'>
+                        <div className='card-bodyb'>
                             <br />
-                            <div id='recaptcha'></div>
                             <form onSubmit={(e) => onSubmit(e)}>
-                                <div className='form-group'>
+                                <div
+                                    className='form-group'
+                                    style={{ marginTop: '20px' }}
+                                >
                                     <input
                                         align='middle'
                                         type='tel'
@@ -92,13 +87,17 @@ const Home = () => {
                                         onChange={(e) => onChange(e)}
                                     />
                                 </div>
-
-                                <input
-                                    type='submit'
-                                    className='submit btn btn-primary'
-                                    value='Login'
-                                />
+                                <div className='submit-container'>
+                                    <input
+                                        type='submit'
+                                        className='submit btn btn-primary'
+                                        value='Login'
+                                    />
+                                </div>
                             </form>
+                        </div>
+                        <div className='recaptcha-holder'>
+                            <div className='recaptcha' id='recaptcha'></div>
                         </div>
                     </div>
                     <div style={{ textAlign: 'center' }}>

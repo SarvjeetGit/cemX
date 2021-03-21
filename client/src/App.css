@@ -197,7 +197,7 @@ li span {
         border: 0ch;
         padding: 0%;
     }
-    .card-body div i {
+    .card-bodyb div i {
         display: block;
         justify-content: center;
     }
@@ -250,7 +250,7 @@ li span {
     .chartcont {
         max-height: 800px;
         max-width: 800px;
-        padding-left: 0px;
+        padding-left: 1.5%;
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -258,32 +258,19 @@ li span {
         position: absolute;
         top: 51%;
         left: 32%;
-        display: none;
     }
     .counter {
         position: absolute;
         top: 42%;
-        left: 30%;
+        left: 31.9%;
     }
 }
 
-.card-body {
+.card-bodyb {
+    margin-top: -90px;
+    height: 100px;
     display: flex;
     justify-content: center;
-}
-/* .countholder {
-    position: absolute;
-    top: 51%;
-    left: 64%;
-}
-.counter {
-    position: absolute;
-
-    top: 45%;
-    left: 64%;
-} */
-.badge .badge-custom {
-    background-color: #841f27 !important;
 }
 
 ::-webkit-input-placeholder {
