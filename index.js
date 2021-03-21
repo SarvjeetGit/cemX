@@ -8,6 +8,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 app.use('/user', require('./api/users'));
+app.use('/admin', require('./api/admin'));
 
 //serving static assets
 if (process.env.NODE_ENV === 'production') {

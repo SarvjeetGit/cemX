@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import { Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import showData from '../actions/showData';
-import Details from './Details';
+import Details2 from './Details2';
 const Home = () => {
     const [formData, setFormData] = useState({
         number: '',
@@ -23,11 +23,28 @@ const Home = () => {
         setFormData({ ...formData, loaded: true, payload: await data });
     };
     if (formData.loaded) {
-        return <Route render={() => <Details {...formData.payload} />} />;
+        return <Route render={() => <Details2 {...formData.payload} />} />;
+        // return (
+        //     <Redirect
+        //         to={{ pathname: '/details', state: { ...formData.payload },  }}
+        //     />
+        // );
     } else {
         return (
             <Fragment>
                 <div className='container' id='form'>
+                    <div
+                        className=''
+                        style={{
+                            textAlign: 'center',
+                            fontSize: '40px',
+                            fontWeight: 'bold',
+                            color: '#841f27',
+                            paddingTop: '50px',
+                        }}
+                    >
+                        Credit Portal
+                    </div>
                     <div className='card formwala'>
                         <div className='card-body'>
                             <br />
@@ -58,6 +75,9 @@ const Home = () => {
                             Enter your phone number without country code,
                             example: 9876543210
                         </small>
+                        {/* <NavLink to='/admin' className='nav-link'>
+                            Admin Panel<i className='fa fa-sign-in'></i>
+                        </NavLink> */}
                     </div>
                 </div>
             </Fragment>

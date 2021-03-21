@@ -1,17 +1,59 @@
+@font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot');
+    src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff')
+            format('woff'),
+        url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf')
+            format('truetype'),
+        url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular')
+            format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proxima_nova_rgbold';
+    src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+    src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff')
+            format('woff'),
+        url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf')
+            format('truetype'),
+        url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold')
+            format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+.root {
+    margin: 0;
+    padding: 0;
+}
 body {
     height: 100%;
     background-color: #fff;
 }
-nav {
+/* nav {
     background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
-}
+} */
 
 .formwala {
-    margin-top: 20%;
+    margin-top: 10%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .submit {
     position: absolute;
     top: 50%;
@@ -19,7 +61,16 @@ nav {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-
+.btn-holder {
+    position: relative;
+    margin-top: 40px;
+}
+.foot {
+    margin-top: 10px;
+}
+.main {
+    min-height: 100vh;
+}
 .container {
     height: 100%;
     width: 100%;
@@ -42,7 +93,24 @@ nav {
     justify-content: center;
     min-height: 180px;
 }
-
+.cardimp {
+    border: 0px;
+}
+.btn-primary {
+    background-color: #841f27;
+    border: #841f27;
+}
+.btn-primary:hover {
+    background-color: #f31023 !important;
+    border: #f31023 !important;
+}
+.btn-primary:active:focus {
+    background-color: #f31023 !important;
+    border: #f31023 !important;
+}
+.btn-primary:not(:disabled):not(.disabled):active {
+    box-shadow: none !important;
+}
 .debit {
     color: red;
 }
@@ -103,15 +171,12 @@ li span {
     #form {
         margin-bottom: 20%;
     }
-    .foot {
-        margin-top: 5%;
-    }
 }
 
 @media all and (max-width: 990px) {
-    .container {
+    /* .container {
         width: 95%;
-    }
+    } */
     #form {
         margin-top: 50%;
         margin-bottom: 55%;
@@ -137,11 +202,19 @@ li span {
         max-width: 100px;
         max-height: 100px;
     }
-    .foot {
-        margin-top: 25%;
-    }
 }
 .card-body {
     display: flex;
     justify-content: center;
+}
+.countholder {
+    position: absolute;
+    top: 51%;
+    left: 65%;
+}
+.counter {
+    position: absolute;
+
+    top: 45%;
+    left: 65%;
 }

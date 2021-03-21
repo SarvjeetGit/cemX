@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 // import { Link } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { Doughnut } from 'react-chartjs-2';
+import Moment from 'react-moment';
 
-export default function Details(info) {
+export default function Details2(info) {
     console.log(info.name);
     const Completionist = () => (
         <span style={{ color: 'red' }}>Your Payments are due!!</span>
@@ -37,16 +38,17 @@ export default function Details(info) {
             return (
                 <Fragment>
                     <div
+                        className='counter'
                         style={{
                             color: 'red',
                             fontSize: 'larger',
                             fontWeight: 'bolder',
                         }}
                     >
-                        <i> {days} Days</i>
-                        <i> {hours} Hours</i>
-                        <i> {minutes} Minutes </i>
-                        <i> {seconds} Seconds</i>
+                        <i>{days > 10 ? days : `0${days}`}:</i>
+                        <i>{hours > 10 ? hours : `0${hours}`}:</i>
+                        <i>{minutes > 10 ? minutes : `0${minutes}`}:</i>
+                        <i>{seconds > 10 ? seconds : `0${seconds}`}</i>
                     </div>
                 </Fragment>
             );
@@ -60,13 +62,13 @@ export default function Details(info) {
             {
                 data: [paid, due],
                 backgroundColor: [
-                    'rgba(102, 255, 102, 0.7)',
-                    'rgba(255, 102, 102,0.7)',
+                    'rgba(132,31,39, 0.8)',
+                    'rgba(151,140,149,0.5)',
                 ],
-                borderColor: ['rgba(0, 179, 0, 1)', 'rgba(255, 0, 0, 1)'],
+                borderColor: ['rgba(132,31,39,1)', 'rgba(151,140,149,1)'],
                 hoverBackgroundColor: [
-                    'rgb(0, 179, 0, 1)',
-                    'rgba(255, 0, 0, 1)',
+                    'rgba(132,31,39,1)',
+                    'rgba(169,169,169,1)',
                 ],
                 borderWidth: '2',
                 weight: '1',
@@ -112,53 +114,48 @@ export default function Details(info) {
                         </div>
                     </div>
                 </div>
-                <div className='row'>
-                    <div className='col-12'>
-                        <div className='card'>
-                            <div className='container'>
-                                <div className='row'>
-                                    <div className='col-6'>
-                                        <div className='card-title'></div>
-                                        <div className='card-body'>
-                                            <div id='chart'>
-                                                <Doughnut
-                                                    data={data2}
-                                                    width={50}
-                                                    height={50}
-                                                    legend={{ display: false }}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='card-footer'>
-                                            <span className='badge badge-danger'>
-                                                Due:{info.due}₹
-                                            </span>
-                                            <span className='badge badge-success'>
-                                                Paid:{info.paid}₹
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className='col-6'>
-                                        <div className='card-title payment'>
-                                            <strong>Payment Due in:</strong>
-                                        </div>
-                                        <div className='card-body'>
-                                            <Countdown
-                                                date={info.duedate}
-                                                renderer={renderer}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div className='row ' style={{ position: 'relative' }}>
+                    <div
+                        className='chartcont col-12'
+                        style={{
+                            maxHeight: '800px',
+                            maxWidth: '800px',
+                            paddingLeft: '33.5%',
+                            marginTop: '20px',
+                            marginBottom: '20px',
+                        }}
+                    >
+                        <Countdown date={info.duedate} renderer={renderer} />
+                        <div className='countholder'>
+                            <strong>dd:hh:mm:ss</strong>
                         </div>
+                        <Doughnut
+                            data={data2}
+                            width={50}
+                            height={50}
+                            legend={{ display: false }}
+                        />
                     </div>
                 </div>
-                {/* <div className='row' style={{ paddingTop: '20px' }}>
+                <div
+                    className='card-footer'
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <span className='badge badge-danger'>Due:{info.due}₹</span>
+                    <span className='badge badge-success'>
+                        Paid:{info.paid}₹
+                    </span>
+                </div>
+                <div className='row' style={{ paddingTop: '20px' }}>
                     <strong>
-                        Download Invoice <i className='fa fa-arrow-right'></i>
+                        Due Date :{' '}
+                        <Moment date={info.duedate} format='DD/MM/YYYY' />
                     </strong>
-                </div> */}
+                </div>
             </section>
         </Fragment>
     );
