@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Details2 from './components/Details2';
 import AdminPanel from './components/AdminPanel';
 
-import Home from './components/Home';
+import Home2 from './components/Home2';
 import Header from './components/Header';
 import Footer from './components/Footer';
 const App = () => (
@@ -14,7 +14,7 @@ const App = () => (
             <div className='main'>
                 <Header />
                 <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/' component={Home2} />
                     <Route exact path='/details' component={Details2} />
                     {/* <Route
                         exact
