@@ -4,47 +4,88 @@ import showData from '../actions/showData';
 import Details2 from './Details2';
 import firebase from '../firebase';
 import './Home.css';
+import { Form, FormGroup } from 'react-bootstrap';
 const Home = () => {
     const [formData, setFormData] = useState({
         number: '',
         loaded: false,
         payload: {},
     });
-    let code = null;
-    const htm = `<input placeholder='enter OTP' />`;
+    const [otpData, setOtpData] = useState({
+        otp: '',
+    });
+    let code;
+    // const htm = ;
     const { number } = formData;
 
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const onChangeOTP = (e) =>
+        setOtpData({ ...otpData, [e.target.name]: e.target.value });
+
+    const { otp } = otpData;
     var res = null;
     var data;
-    const onSubmit = (e) => {
+    let coderesult;
+    const onSubmit = async (e) => {
         e.preventDefault();
         let num = '+91' + number;
         let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
         firebase
             .auth()
             .signInWithPhoneNumber(num, recaptcha)
-            .then(function (e) {
-                document.querySelector('.recaptcha').innerHTML = htm;
-                // let code = prompt('enter the otp', '');
-                // if (code == null) return;
-                e.confirm(code)
-                    .then(async function () {
-                        res = await showData(number);
-                        data = await res.data;
-                        setFormData({
-                            ...formData,
-                            loaded: true,
-                            payload: await data,
-                        });
-                    })
-                    .catch((err) => {
-                        console.log(err.message);
-                    });
+            .then(function (confirmationResult) {
+                document.querySelector('.hello').classList.add('nohello');
+                document.querySelector('.recaptcha').classList.add('hello');
+                // let otp = window.prompt('enter the otp', '');
+                // let otp = await otpData.otp;
+                // console.log(otp);
+                // // if (code == null) return;
+                // e.confirm(otp)
+                //     .then(async function () {
+                //         res = await showData(number);
+                //         data = await res.data;
+                //         setFormData({
+                //             ...formData,
+                //             loaded: true,
+                //             payload: await data,
+                //         });
+                //     })
+                //     .catch((err) => {
+                //         console.log(err.message);
+                //     });
+                window.confirmationResult = confirmationResult;
+                window.coderesult = confirmationResult;
+                console.log(window.coderesult);
             });
     };
+
+    const onSubmitOTP = (e) => {
+        e.preventDefault();
+        // code = otp;
+    };
+    const handleClick = (e) => {
+        e.preventDefault();
+        var otp = otpData.otp;
+        console.log(otp);
+        console.log(window.coderesult);
+        window.coderesult
+            .confirm(otp)
+            .then(async function () {
+                res = await showData(number);
+                data = await res.data;
+                setFormData({
+                    ...formData,
+                    loaded: true,
+                    payload: await data,
+                });
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    };
+
     if (formData.loaded) {
         return <Route render={() => <Details2 {...formData.payload} />} />;
     } else {
@@ -72,6 +113,7 @@ const Home = () => {
                                     style={{ marginTop: '20px' }}
                                 >
                                     <input
+                                        id='telinp'
                                         align='middle'
                                         type='tel'
                                         size={
@@ -98,6 +140,33 @@ const Home = () => {
                         </div>
                         <div className='recaptcha-holder'>
                             <div className='recaptcha' id='recaptcha'></div>
+                            <Form
+                                className='hello otp'
+                                // onSubmit={(e) => onSubmitOTP(e)}
+                            >
+                                <FormGroup>
+                                    <label>Enter OTP:</label>
+                                    <input
+                                        type='text'
+                                        placeholder='123456'
+                                        name='otp'
+                                        value={otp}
+                                        pattern='[0-9]{6}'
+                                        onChange={(e) => onChangeOTP(e)}
+                                    ></input>
+                                </FormGroup>
+                                <FormGroup>
+                                    <button
+                                        // type='submit'
+                                        className=' btn btn-primary'
+                                        // value='verify'
+                                        onClick={handleClick}
+                                    >
+                                        {' '}
+                                        Verify{' '}
+                                    </button>
+                                </FormGroup>
+                            </Form>
                         </div>
                     </div>
                     <div style={{ textAlign: 'center' }}>

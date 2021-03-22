@@ -10,10 +10,21 @@
     position: relative;
     height: 85px;
     width: 100%;
+    margin-top: 20px;
 }
 .recaptcha {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.hello {
+    display: none;
+}
+.nohello {
+    display: flex !important;
+}
+
+.otp {
+    justify-content: space-evenly;
 }

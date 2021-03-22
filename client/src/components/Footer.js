@@ -86,15 +86,15 @@ const Footer = () => {
                 </div>
             </section>
             {/* footer */}
-            <section class='footer boxs'>
-                <div class='container'>
-                    <div class='row nomargin decrease'>
-                        <div class='col-md-3 col-sm-6 nopadding'>
-                            <div class='india_cm boxs'>
+            <section className='footer boxs'>
+                <div className='container'>
+                    <div className='row nomargin decrease'>
+                        <div className='col-md-3 col-sm-6 nopadding'>
+                            <div className='india_cm boxs'>
                                 <a href='https://www.cemx.in/'>
                                     <img
                                         src='https://www.cemx.in/front/img/logo.png'
-                                        class='img-fluid'
+                                        className='img-fluid'
                                         alt='cemx'
                                     />
                                 </a>
@@ -113,8 +113,8 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div class='col-md-3 col-sm-6 nopadding'>
-                            <div class='Popular boxs pop'>
+                        <div className='col-md-3 col-sm-6 nopadding'>
+                            <div className='Popular boxs pop'>
                                 <ul>
                                     <li className='didit done'>
                                         {' '}
@@ -149,8 +149,8 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div class='col-md-3 col-sm-6 nopadding' style={{}}>
-                            <div class='Popular boxs quick'>
+                        <div className='col-md-3 col-sm-6 nopadding' style={{}}>
+                            <div className='Popular boxs quick'>
                                 <ul>
                                     <li className='didit done'> Quick Links</li>
                                     <li className='didit'>
@@ -192,8 +192,8 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div class='col-md-3 col-sm-6 nopadding'>
-                            <div class='Popular boxs service'>
+                        <div className='col-md-3 col-sm-6 nopadding'>
+                            <div className='Popular boxs service'>
                                 <ul>
                                     <li className='didit done'>Our Services</li>
                                     <li className='didit'>
@@ -233,13 +233,13 @@ const Footer = () => {
                     </div>
                 </div>
             </section>
-            <section class='footerbtm  boxs'>
-                <div class='container-fluid'>
-                    <div class='btmleft d-inline-block '>
+            <section className='footerbtm  boxs'>
+                <div className='container-fluid'>
+                    <div className='btmleft d-inline-block '>
                         <p>
                             <span>
                                 <i
-                                    class='fa fa-copyright'
+                                    className='fa fa-copyright'
                                     aria-hidden='true'
                                 ></i>
                             </span>{' '}
