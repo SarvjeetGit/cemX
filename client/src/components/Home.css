@@ -1,9 +1,19 @@
 .letsgo {
     height: 300px;
+
+    /* transition: height 3000ms ease-in; */
 }
 .submit-container {
     padding-top: 20px;
     position: relative;
+}
+
+.astext {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
 
 .recaptcha-holder {
@@ -27,4 +37,14 @@
 
 .otp {
     justify-content: space-evenly;
+}
+
+.didnt {
+    display: none;
+}
+
+.did {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 20px;
 }

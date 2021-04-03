@@ -3,19 +3,34 @@ import { NavLink, Route } from 'react-router-dom';
 import showData from '../actions/showData';
 import Details2 from './Details2';
 import firebase from '../firebase';
+import Countdown from 'react-countdown';
+
 import './Home.css';
-import { Form, FormGroup } from 'react-bootstrap';
+import { Form, FormGroup, Modal, Button } from 'react-bootstrap';
 const Home = () => {
     const [formData, setFormData] = useState({
         number: '',
         loaded: false,
+        error: false,
         payload: {},
     });
     const [otpData, setOtpData] = useState({
         otp: '',
     });
-    let code;
-    // const htm = ;
+
+    const [show, setShow] = useState(true);
+
+    const handleClose = () => {
+        setShow(false);
+        setFormData({
+            number: '',
+            loaded: false,
+            error: false,
+            payload: {},
+        });
+    };
+    const handleShow = () => setShow(true);
+
     const { number } = formData;
 
     const onChange = (e) =>
@@ -30,7 +45,40 @@ const Home = () => {
     let coderesult;
     const onSubmit = async (e) => {
         e.preventDefault();
+
         let num = '+91' + number;
+        document
+            .querySelector('.recap-holder')
+            .classList.add('recaptcha-holder');
+        document.querySelector('.formwala').classList.add('letsgo');
+        document.querySelector('.sub-cont').classList.add('submit-container');
+        let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
+        firebase
+            .auth()
+            .signInWithPhoneNumber(num, recaptcha)
+            .then(function (confirmationResult) {
+                window.grecaptcha.reset(recaptcha);
+
+                document.querySelector('.hello').classList.add('nohello');
+                document.querySelector('.recaptcha').classList.add('hello');
+
+                document.querySelector('.didnt').classList.add('did');
+                window.confirmationResult = confirmationResult;
+                window.coderesult = confirmationResult;
+                console.log(window.coderesult);
+            });
+    };
+
+    const onSubmitNew = async (e) => {
+        e.preventDefault();
+        let num = '+91' + number;
+        document
+            .querySelector('.recap-holder')
+            .classList.add('recaptcha-holder');
+        document.querySelector('.formwala').classList.add('letsgo');
+        document.querySelector('.sub-cont').classList.add('submit-container');
+        document.querySelector('.hello').classList.remove('.nohello');
+        document.querySelector('.recaptcha').classList.remove('.hello');
         let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
         firebase
             .auth()
@@ -38,35 +86,40 @@ const Home = () => {
             .then(function (confirmationResult) {
                 document.querySelector('.hello').classList.add('nohello');
                 document.querySelector('.recaptcha').classList.add('hello');
-                // let otp = window.prompt('enter the otp', '');
-                // let otp = await otpData.otp;
-                // console.log(otp);
-                // // if (code == null) return;
-                // e.confirm(otp)
-                //     .then(async function () {
-                //         res = await showData(number);
-                //         data = await res.data;
-                //         setFormData({
-                //             ...formData,
-                //             loaded: true,
-                //             payload: await data,
-                //         });
-                //     })
-                //     .catch((err) => {
-                //         console.log(err.message);
-                //     });
+                // setTimeout(function () {
+                //     document.querySelector('.didnt').classList.add('did');
+                // }, 5000);
+
+                document.querySelector('.didnt').classList.add('did');
                 window.confirmationResult = confirmationResult;
                 window.coderesult = confirmationResult;
                 console.log(window.coderesult);
             });
+        console.log('yoooo');
     };
 
-    const onSubmitOTP = (e) => {
-        e.preventDefault();
-        // code = otp;
+    const Completionist = () => (
+        <span>
+            Resend
+            <button onClick={(e) => onSubmitNew(e)} className='astext'>
+                now!
+            </button>
+        </span>
+    );
+
+    // Renderer callback with condition
+    const renderer = ({ seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return <Completionist />;
+        } else {
+            // Render a countdown
+            return <span>Resend in: {seconds} s</span>;
+        }
     };
     const handleClick = (e) => {
         e.preventDefault();
+
         var otp = otpData.otp;
         console.log(otp);
         console.log(window.coderesult);
@@ -83,11 +136,35 @@ const Home = () => {
             })
             .catch((err) => {
                 console.log(err.message);
+                setFormData({ ...formData, error: true });
             });
     };
 
-    if (formData.loaded) {
+    if (formData.loaded && !formData.error) {
         return <Route render={() => <Details2 {...formData.payload} />} />;
+    } else if (!formData.loaded && formData.error) {
+        return (
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop='static'
+                keyboard={false}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Error!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Entered OTP is incorrect, please try again!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant='primary' onClick={handleClose}>
+                        Close
+                    </Button>
+                    {/* <Button variant='primary'>Understood</Button> */}
+                </Modal.Footer>
+            </Modal>
+        );
     } else {
         return (
             <Fragment>
@@ -104,7 +181,7 @@ const Home = () => {
                     >
                         <span style={{ color: 'gray' }}>Credit</span> Portal
                     </div>
-                    <div className='card letsgo formwala'>
+                    <div className='card formwala'>
                         <div className='card-bodyb'>
                             <br />
                             <form onSubmit={(e) => onSubmit(e)}>
@@ -129,7 +206,7 @@ const Home = () => {
                                         onChange={(e) => onChange(e)}
                                     />
                                 </div>
-                                <div className='submit-container'>
+                                <div className='sub-cont'>
                                     <input
                                         type='submit'
                                         className='submit btn btn-primary'
@@ -138,12 +215,11 @@ const Home = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className='recaptcha-holder'>
+                        <div className='recap-holder'>
                             <div className='recaptcha' id='recaptcha'></div>
-                            <Form
-                                className='hello otp'
-                                // onSubmit={(e) => onSubmitOTP(e)}
-                            >
+                            <div className='recaptcha2' id='recaptcha2'></div>
+
+                            <Form className='hello otp'>
                                 <FormGroup>
                                     <label>Enter OTP:</label>
                                     <input
@@ -157,9 +233,7 @@ const Home = () => {
                                 </FormGroup>
                                 <FormGroup>
                                     <button
-                                        // type='submit'
                                         className=' btn btn-primary'
-                                        // value='verify'
                                         onClick={handleClick}
                                     >
                                         {' '}
@@ -167,6 +241,15 @@ const Home = () => {
                                     </button>
                                 </FormGroup>
                             </Form>
+                            <div className='didnt'>
+                                <strong>
+                                    Didnt receive the code?
+                                    <Countdown
+                                        date={Date.now() + 20000}
+                                        renderer={renderer}
+                                    />
+                                </strong>
+                            </div>
                         </div>
                     </div>
                     <div style={{ textAlign: 'center' }}>
